@@ -5,14 +5,17 @@
 
     <div class="row flex-lg-row-reverse align-items-center g-2 py-2 mb-3">
         <div class="col-10 col-sm-8 col-lg-6">
+            <!--Image specifications-->
             <img src="~/img/layton-utah-temple-6932-main.jpg" class="d-block mx-lg-auto d-sm-flex" alt="temple" width="350" height="350" loading="lazy">
-            <center><button type="button" class="btn btn-info btn-lg">Sign Up</button></center>
+            <!--Sign up button-->
+            <center><input type="button" class="btn btn-info btn-lg" value="Sign Up" onclick="window.location= '@Url.Action( "SignUp", "Home")'" /></center>
+
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6"> <!--List group for temple information-->
             <ol class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">General Tour Instructions</div>
+                        <div class="fw-bold">General Tour Instructions</div> <!--General tour instructions-->
                         - Park on Rosewood (West side of the temple) and meet at the Visitors Center trailer.<br />
                         - Casual Dress, except on Sunday
                     </div>
@@ -20,7 +23,7 @@
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Available Tours</div>
+                        <div class="fw-bold">Available Tours</div> <!--Available tours-->
                         <i>- Outdoor Tour</i><br /> We will walk on the sidewalk along Oak Hills and on Rosewood in front of the temple on uneven surfaces; please wear sturdy shoes
                         <br /><i>- Trailer Tour</i><br /> On Sunday. Masks are required
                     </div>
@@ -28,7 +31,7 @@
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Special Accomodations</div>
+                        <div class="fw-bold">Special Accomodations</div> <!--Special accomodations-->
                         - Spanish-speaking tours are available, by request.<br />
                         (check the appropriate box when signing up for a tour)
                     </div>
@@ -36,14 +39,14 @@
 
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Questions? </div>
+                        <div class="fw-bold">Questions? </div> <!--Questions-->
                         Call or text 801-628-4488
                     </div>
                 </li>
-            </ol>        
-            </div>
+            </ol>
         </div>
-    
+    </div>
+
 
 
 </body>
