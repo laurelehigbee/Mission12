@@ -23,6 +23,11 @@ namespace Mission12.Migrations
                 {
                     table.PrimaryKey("PK_responses", x => x.TourId);
                 });
+
+            migrationBuilder.InsertData(
+                table: "responses",
+                columns: new[] { "TourId", "AptDate", "AptTime", "Email", "GroupName", "Phone", "Size" },
+                values: new object[] { 1, "January 1 2022", "12:00 pm", "randomEmail@gmail.com", "A Group", "555-555-5555", 12 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

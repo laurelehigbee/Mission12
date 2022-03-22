@@ -10,9 +10,25 @@ namespace Mission12.Models
     {
         public AppointmentContext(DbContextOptions<AppointmentContext> options) : base(options)
         {
+        }
+        public DbSet<AppointmentInfo> Responses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder mb)
+        {
+            mb.Entity<AppointmentInfo>().HasData(
+
+                new AppointmentInfo
+                {
+                    TourId=1,
+                    AptDate="January 1 2022",
+                    AptTime="12:00 pm",
+                    GroupName="A Group",
+                    Size=12,
+                    Email="randomEmail@gmail.com",
+                    Phone="555-555-5555"
+
+                });
 
         }
-
-        public DbSet<AppointmentInfo> responses {get;set;}
     }
 }

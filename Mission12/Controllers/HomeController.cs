@@ -11,6 +11,13 @@ namespace Mission12.Controllers
 {
     public class HomeController : Controller
     {
+        private AppointmentContext AptCon { get; set; }
+
+        public HomeController(AppointmentContext appointmentContext) //constructor that passes context instance
+        {
+            AptCon = appointmentContext;
+        }
+
         public IActionResult Index() //what to return when Index page is requested
         {
             return View();
@@ -21,9 +28,12 @@ namespace Mission12.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult ViewAppointments() //what to return when ViewAppointments page is requested
         {
-            return View();
+            var appointments=AptCon.Responses.ToList();
+            return View(appointments);
         }
+
     }
 }

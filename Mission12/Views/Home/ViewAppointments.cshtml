@@ -2,4 +2,45 @@
     ViewData["Title"] = "Appointments"; <!--Title for the web page-->
 }
 
-<h1>Appointments</h1>
+@model List<AppointmentInfo>
+    <!--connects to the list of appointment responses--->
+
+<div class="text-center">
+    <h1 class="display-4">All Appointments</h1> <!--Heading for the web page-->
+</div>
+<table class="table table-bordered table-striped">
+    <!--Creates table for the information-->
+    <thead class="font-weight-bold">
+        <tr>
+            <td>Tour ID</td>
+            <td>Appointment Date</td>
+            <td>Time</td>
+            <td>Group Name</td>
+            <td>Size</td>
+            <td>Email</td>
+            <td>Phone</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <!--Instructs how to put the info from the db into the table-->
+        @foreach (var x in Model)
+
+        {
+            <tr>
+                <td>@x.TourId</td>
+                <td>@x.AptDate</td> <!--Allows for the record's data for each column to be entered-->
+                <td>@x.AptTime</td>
+                <td>@x.GroupName</td>
+                <td>@x.Size</td>
+                <td>@x.Email</td>
+                <td>@x.Phone</td>
+
+                <!--Button To Edit Record-->
+                <td><a asp-controller="Home" asp-action="Edit">Edit</a></td>
+                <!--Button To Delete Record-->
+                <td><a asp-controller="Home" asp-action="Delete">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
