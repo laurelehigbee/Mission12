@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Mission12.Models
 {
-    public class AppointmentContext : DbContext
+    public class AppointmentContext : DbContext //inherits from dbcontext 
     {
         public AppointmentContext(DbContextOptions<AppointmentContext> options) : base(options)
         {
         }
-        public DbSet<AppointmentInfo> Responses { get; set; }
+        public DbSet<AppointmentInfo> Responses { get; set; } //connects and helps pull data from db
 
-        protected override void OnModelCreating(ModelBuilder mb)
+        protected override void OnModelCreating(ModelBuilder mb) //seeds data
         {
             mb.Entity<AppointmentInfo>().HasData(
 

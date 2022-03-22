@@ -35,5 +35,21 @@ namespace Mission12.Controllers
             return View(appointments);
         }
 
+        [HttpGet]
+        public IActionResult Delete(int tourid) //what to return when delete is selected
+        {
+            var appointment=AptCon.Responses.Single(x=>x.TourId==tourid);
+            return View(appointment);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(AppointmentInfo apt) //what to return when appointment is confirmed and needs to be deleted
+        {
+            AptCon.Responses.Remove(apt);
+            AptCon.SaveChanges();
+
+            return RedirectToAction("ViewAppointments");
+        }
+
     }
 }

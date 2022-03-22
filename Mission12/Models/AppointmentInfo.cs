@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Mission12.Models
 {
-    public class AppointmentInfo
+    public class AppointmentInfo //all information relating to an appointment
     {
         [Key]
-        [Required]
+        [Required] //sets tourid as primary key and required
         public int TourId { get; set; } 
         [Required]
         public string AptDate { get; set; }

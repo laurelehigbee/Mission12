@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Delete Confirmation"; <!--Title for the web page-->
+}
+
+@model AppointmentInfo
+
+<center><h1>Delete</h1></center><!--Page title-->
+<h4>Are you sure you want to delete the tour for @Model.GroupName ? </h4> <!--Asks for confirmation-->
+
+<form method="post" asp-action="Delete"> 
+    <button class="btn btn-danger" type="submit">Delete</button> <!--Button to delete-->
+    <a asp-controller="Home" asp-action="ViewAppointments" class="btn btn-success">Cancel</a><!--Button to cancel-->
+
+    <input type="hidden" asp-for="TourId" /> <!--Confirms which tourid record is being deleted-->
+</form>
