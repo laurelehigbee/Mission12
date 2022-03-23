@@ -34,15 +34,23 @@
                 <td>Time</td>
             </tr>
         </thead>
-    <tbody>
-        @foreach (TimeSlot ts in Model.Slots) 
-        {
-            <tr>
-                <td>@ts.Date</td>
-                <td>@ts.Time</td>
-            </tr>
-        }
-    </tbody>
+        <tbody>
+            @foreach (TimeSlot ts in Model.Slots)
+            {
+                <form method="get" asp-controller="Home" asp-action="Form">
+                    <tr>
+                        <input type="hidden" value="@ts.TimeSlotId"/>
+                        <td>@ts.Date</td>
+                        <td>@ts.Time</td>
+                        <button type="submit">Set Appointment</button>
+                        @*<span class="card-text">
+                            <button type="submit" class="btn btn-success btn-sm float-end">Add</button>
+                        </span>*@
+                    </tr>
+                </form>
+
+            }
+        </tbody>
     </table>
 
 
