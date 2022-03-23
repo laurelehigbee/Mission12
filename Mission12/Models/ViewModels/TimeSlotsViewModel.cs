@@ -7,7 +7,8 @@ namespace Mission12.Models.ViewModels
 {
     public class TimeSlotsViewModel
     {
-        public IQueryable<TimeSlot> Slots { get; set; }
+        public List<DateTime> Days { get; set; }
+        public List<int> Times { get; set; }
 
     }
 }
