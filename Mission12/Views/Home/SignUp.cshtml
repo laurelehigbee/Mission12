@@ -65,9 +65,10 @@
                                     validTimes += 1;
                                     <tr>
                                         <td>
+                                            <button asp-controller="Home" asp-action="Form">Test navigation to form!</button>
                                             @*
-                                                // This isn't very readable, but it's pretty fun.
-                                                // It chooses a prefix (am or pm) and converts 24-hour time to 12-hour time.
+                                            // This isn't very readable, but it's pretty fun.
+                                            // It chooses a prefix (am or pm) and converts 24-hour time to 12-hour time.
                                             *@
                                             @(time < 12 ? $"{time}:00 am" : time == 12 ? $"{time}:00 pm" : $"{time - 12}:00 pm")
                                         </td>
