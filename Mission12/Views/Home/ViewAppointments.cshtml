@@ -29,8 +29,9 @@
         {
             <tr>
                 <td>@x.TourId</td>
-                <td>@x.AptDate</td> <!--Allows for the record's data for each column to be entered-->
-                <td>@x.AptTime</td>
+                <td>@x.AptDate.ToShortDateString()</td> <!--Allows for the record's data for each column to be entered-->
+                <!--Not a pretty nested ternary, but the simplest inline way to determine the appropriate time suffix and convert from 24-hour to 12-hour format-->
+                <td>@(x.AptTime < 12 ? $"{x.AptTime}:00 am" : x.AptTime == 12 ? $"{x.AptTime}:00 pm" : $"{x.AptTime - 12}:00 pm")</td>
                 <td>@x.GroupName</td>
                 <td>@x.Size</td>
                 <td>@x.Email</td>

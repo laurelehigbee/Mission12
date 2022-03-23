@@ -27,19 +27,63 @@
 <div class="text-center">
     <h1 class="display-4">Sign Up For A Tour</h1> <!--Heading for the web page-->
 </div>
-    <table class="table table-bordered table-striped">
+@* input, populate table; input, populate new input, populate table; datepicker? table? week view?*@
+
+    <table class="table table-bordered">
         <thead class="font-weight-bold">
             <tr>
-                <td>Date</td> <!--Table row headers-->
-                <td>Time</td>
+                <th>Date</th> <!--Table row headers-->
+                <th>Time</th>
             </tr>
         </thead>
     <tbody>
-        @foreach (TimeSlot ts in Model.Slots) 
+        @foreach (DateTime day in Model.Days) 
         {
             <tr>
-                <td>@ts.Date</td>
-                <td>@ts.Time</td>
+                <td>
+                    <div class="table-heading">
+                        @day.ToShortDateString()
+                    </div>
+                    <div>
+                        (@day.DayOfWeek)
+                    </div>
+                </td>
+                <td>
+                    <table class="table table-striped">
+                        <tbody>
+                            @*
+                                Here's what is happening:
+                                Loop through each day for the next three months.
+                                For each day, loop through the list of possible times. Do not show the time slot if it is preset or past.
+                                If there are no available time slots for today, show a message. 
+                            *@
+                            @{ int validTimes = 0; }
+                            @foreach (int time in Model.Times)
+                            {
+                                if (day.Date != DateTime.Now.Date || time > DateTime.Now.Hour)
+                                {
+                                    validTimes += 1;
+                                    <tr>
+                                        <td>
+                                            <a class="btn btn-primary" asp-controller="Home" asp-action="Form">Test navigation to form!</a>
+                                            @*
+                                            // This isn't very readable, but it's pretty fun.
+                                            // It chooses a prefix (am or pm) and converts 24-hour time to 12-hour time.
+                                            *@
+                                            @(time < 12 ? $"{time}:00 am" : time == 12 ? $"{time}:00 pm" : $"{time - 12}:00 pm")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (validTimes == 0)
+                            {
+                            <tr>
+                                <td>No valid times for today!</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
             </tr>
         }
     </tbody>
