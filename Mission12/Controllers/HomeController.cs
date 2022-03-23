@@ -13,12 +13,10 @@ namespace Mission12.Controllers
     public class HomeController : Controller
     {
         private AppointmentContext AptCon { get; set; }
-        private ITimeSlotRepository repo;
 
-        public HomeController(AppointmentContext appointmentContext , ITimeSlotRepository temp) //constructor that passes context instance
+        public HomeController(AppointmentContext appointmentContext) //constructor that passes context instance
         {
             AptCon = appointmentContext;
-            repo = temp;
         }
 
         [HttpGet]

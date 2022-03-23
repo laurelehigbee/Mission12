@@ -30,11 +30,7 @@ namespace Mission12
             {
                 options.UseSqlite(Configuration["ConnectionStrings:TourConnection"]);
             });
-            services.AddDbContext<TimeSlotContext>(options =>
-            {
-                options.UseSqlite(Configuration["ConnectionStrings:SlotConnection"]);
-            });
-            services.AddScoped<ITimeSlotRepository, EFTimeSlotRepository>();
+
             services.AddRazorPages();
 
         }
