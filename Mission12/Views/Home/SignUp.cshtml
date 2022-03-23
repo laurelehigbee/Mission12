@@ -24,10 +24,18 @@
 @model TimeSlotsViewModel
 
 
-    <h1>Sign Up For A Tour:</h1>
-
+<div class="text-center">
+    <h1 class="display-4">Sign Up For A Tour</h1> <!--Heading for the web page-->
+</div>
+    <table class="table table-bordered table-striped">
+        <thead class="font-weight-bold">
+            <tr>
+                <td>Date</td> <!--Table row headers-->
+                <td>Time</td>
+            </tr>
+        </thead>
     <tbody>
-        @foreach (TimeSlot ts in Model.Slots)
+        @foreach (TimeSlot ts in Model.Slots) 
         {
             <tr>
                 <td>@ts.Date</td>
@@ -35,5 +43,6 @@
             </tr>
         }
     </tbody>
+    </table>
 
 

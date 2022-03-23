@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Mission12.Models;
+using Mission12.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,18 +13,28 @@ namespace Mission12.Controllers
     public class HomeController : Controller
     {
         private AppointmentContext AptCon { get; set; }
+        private ITimeSlotRepository repo;
 
-        public HomeController(AppointmentContext appointmentContext) //constructor that passes context instance
+        public HomeController(AppointmentContext appointmentContext , ITimeSlotRepository temp) //constructor that passes context instance
         {
             AptCon = appointmentContext;
+            repo = temp;
+        }
+
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            var x = new TimeSlotsViewModel
+            {
+                Slots=repo.Slots
+                
+            };
+
+            return View(x);
+
         }
 
         public IActionResult Index() //what to return when Index page is requested
-        {
-            return View();
-        }
-
-        public IActionResult SignUp() //what to return when SignUp page is requested
         {
             return View();
         }
