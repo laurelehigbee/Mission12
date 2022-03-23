@@ -2,9 +2,7 @@
     ViewData["Title"] = "Sign Up"; <!--Title for the web page-->
 }
 @model AppointmentInfo
-@*AptDate - how will this get passed?
-    AptTime - how does this get passed?
-*@
+
 <div class="text-center">
     <h1 class="display-4">Sign Up For A Tour</h1>
 </div>
@@ -13,6 +11,8 @@
     <label asp-for="Size">Size of Group (Max of 15):</label><input asp-for="Size" /><br />
     <label asp-for="Email">Email:</label><input asp-for="Email" /><br />
     <label asp-for="Phone">Phone Number:</label><input asp-for="Phone" /><br />
+    <!--UNCOMMENT THE CODE BELOW ONCE THE VIEWBAG IS CREATED IN HOMECONTROLLER-->
+    <!--REPLACE THE "*" WITH THE AT SYMBOL BELOW FOR THE RAZOR CODE-->
     <!-- <input type="hidden" asp-for="AptDate" value=*ViewBag.Date />
     <input type="hidden" asp-for-"AptTime" value=*ViewBag.Time-->
     <input class="btn btn-primary" type="submit" value="Submit" />
