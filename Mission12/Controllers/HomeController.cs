@@ -24,13 +24,35 @@ namespace Mission12.Controllers
         [HttpGet]
         public IActionResult SignUp()
         {
-            var x = new TimeSlotsViewModel
-            {
-                Slots=repo.Slots
-                
-            };
+            var schedulableDays = new List<DateTime>();
+            var schedulableTimes = new List<int>();
 
-            return View(x);
+            var now = DateTime.Now;
+            // Get an integer indicating how many days are between now and 3 months from now
+            int offset = (now.AddMonths(3) - now).Days;
+
+            // Load up 3 months worth of days
+            for (int i = 0; i <= offset; i++)
+            {
+                schedulableDays.Add(now.AddDays(i));
+            }
+
+            //Load up the times
+            for (int i = 8; i < 21; i ++)
+            {
+                // This isn't very readable, but it's pretty fun.
+                // It chooses a suffix (am or pm) and converts 24-hour time (for looping) to 12-hour time.
+                schedulableTimes.Add(i);
+            }
+
+            var vm = new TimeSlotsViewModel
+            {
+                Days = schedulableDays,
+                Times = schedulableTimes
+            };
+            
+
+            return View(vm);
 
         }
         //* INDEX PAGE *//

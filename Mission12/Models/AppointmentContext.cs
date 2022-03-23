@@ -20,8 +20,8 @@ namespace Mission12.Models
                 new AppointmentInfo
                 {
                     TourId=1,
-                    AptDate="January 1 2022",
-                    AptTime="12:00 pm",
+                    AptDate=DateTime.Now,
+                    AptTime=20,
                     GroupName="A Group",
                     Size=12,
                     Email="randomEmail@gmail.com",

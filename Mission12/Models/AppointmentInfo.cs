@@ -12,9 +12,9 @@ namespace Mission12.Models
         [Required] //sets tourid as primary key and required
         public int TourId { get; set; } 
         [Required]
-        public string AptDate { get; set; }
+        public DateTime AptDate { get; set; }
         [Required]
-        public string AptTime { get; set; }
+        public int AptTime { get; set; }
         [Required(ErrorMessage = "Please enter your group's name:")]
         public string GroupName { get; set; }
         [Required(ErrorMessage = "Please enter a number between 1 and 15:")]
