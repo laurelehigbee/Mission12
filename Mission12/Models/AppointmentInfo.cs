@@ -15,12 +15,12 @@ namespace Mission12.Models
         public string AptDate { get; set; }
         [Required]
         public string AptTime { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter your group's name:")]
         public string GroupName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a number between 1 and 15:")]
         [Range(1, 15)] //sets range of people between 1 and 15
         public int Size { get; set; } 
-        [Required]
+        [Required(ErrorMessage = "Please enter an email:")]
         public string Email { get; set; }
         public string Phone { get; set; }
     }

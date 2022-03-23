@@ -27,7 +27,45 @@ namespace Mission12.Controllers
         {
             return View();
         }
+        //* ADD *//
 
+        [HttpGet]
+        //public IActionResult Form(string date, string time)
+        public IActionResult Form()
+        {
+            //How are we wanting to pass in the date and time?
+            //ViewBag.Date = date;
+            //ViewBag.Time = time;
+            return View(new AppointmentInfo());
+        }
+        [HttpPost]
+        public IActionResult Form(AppointmentInfo appointmentInfo)
+        {
+            if (ModelState.IsValid)
+            {
+                AptCon.Add(appointmentInfo);
+                AptCon.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(appointmentInfo);
+            }
+        }
+        [HttpGet]
+        //* EDIT *//
+        public IActionResult Edit(int tourid) //Page to Edit forms
+        {
+            var apt = AptCon.Responses.Single(x => x.TourId == tourid);
+            return View(apt);
+        }
+        [HttpPost]
+        public IActionResult Edit(AppointmentInfo appointmentInfo)
+        {
+            AptCon.Responses.Update(appointmentInfo);
+            AptCon.SaveChanges();
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public IActionResult ViewAppointments() //what to return when ViewAppointments page is requested
         {
