@@ -15,22 +15,28 @@ namespace Mission12
 {
     public class Startup
     {
+
+        public IConfiguration Configuration { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
             services.AddDbContext<AppointmentContext>(options =>
             {
                 options.UseSqlite(Configuration["ConnectionStrings:TourConnection"]);
             });
+            services.AddDbContext<TimeSlotContext>(options =>
+            {
+                options.UseSqlite(Configuration["ConnectionStrings:SlotConnection"]);
+            });
+            services.AddScoped<ITimeSlotRepository, EFTimeSlotRepository>();
+            services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +64,10 @@ namespace Mission12
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{tourid?}");
+
+
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
         }
     }

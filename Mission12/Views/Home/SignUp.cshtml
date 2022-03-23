@@ -1,9 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Sign Up"; <!--Title for the web page-->
 }
-<html>
-<body>
+
+@* Sign Up Page: This page will display the available times. Ignore the time slots on the
+    SignUpGenius page. For our purposes, we will say the tours occur every hour on the
+    hour from 8:00 am – 8:00 pm (i.e. the last tour starts at 8:00 pm.) Once the user selects a
+    time, they are routed to a form that has the date info set, but allows the user to enter their
+    info. *@
+
+@* every hour from 8:00 am – 8:00 pm. Button reroutes to fill in information (form) *@
+
+@*  - we want to find a way to find the current date.
+    - then project three months out
+    - 
+    *@
+
+@*  - make appointment class
+    - fill the database 7 appointments 
+    - *@
+
+@*@{string[] dayhours = { "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm" };}*@ 
+
+@model TimeSlotsViewModel
+
+
     <h1>Sign Up For A Tour:</h1>
 
-</body>
-</html>
+    <tbody>
+        @foreach (TimeSlot ts in Model.Slots)
+        {
+            <tr>
+                <td>@ts.Date</td>
+                <td>@ts.Time</td>
+            </tr>
+        }
+    </tbody>
+
+
