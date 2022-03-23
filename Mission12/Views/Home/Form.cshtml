@@ -1,10 +1,14 @@
 ﻿@{
+    ViewData["Title"] = "Sign Up"; <!--Title for the web page-->
 }
 @model AppointmentInfo
 @*AptDate - how will this get passed?
-  AptTime - how does this get passed?
+    AptTime - how does this get passed?
 *@
-<form class="form-control" method="post">
+<div class="text-center">
+    <h1 class="display-4">Sign Up For A Tour</h1>
+</div>
+<form class="form-control row gy-2 gx-3 align-items-center col-md-8" method="post">
     <label asp-for="GroupName" autofocus>Name of Group:</label><input asp-for="GroupName" /><br />
     <label asp-for="Size">Size of Group (Max of 15):</label><input asp-for="Size" /><br />
     <label asp-for="Email">Email:</label><input asp-for="Email" /><br />
@@ -13,3 +17,4 @@
     <input type="hidden" asp-for-"AptTime" value=*ViewBag.Time-->
     <input class="btn btn-primary" type="submit" value="Submit" />
 </form>
+
