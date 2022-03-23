@@ -33,8 +33,8 @@ namespace Mission12.Controllers
             return View(x);
 
         }
-
-        public IActionResult Index() //what to return when Index page is requested
+        //* INDEX PAGE *//
+        public IActionResult Index()
         {
             return View();
         }
