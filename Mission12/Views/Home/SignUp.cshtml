@@ -12,14 +12,14 @@
 
 @*  - we want to find a way to find the current date.
     - then project three months out
-    - 
-    *@
+    -
+*@
 
 @*  - make appointment class
-    - fill the database 7 appointments 
+    - fill the database 7 appointments
     - *@
 
-@*@{string[] dayhours = { "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm" };}*@ 
+@*@{string[] dayhours = { "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm" };}*@
 
 @model TimeSlotsViewModel
 
@@ -27,22 +27,63 @@
 <div class="text-center">
     <h1 class="display-4">Sign Up For A Tour</h1> <!--Heading for the web page-->
 </div>
-    <table class="table table-bordered table-striped">
-        <thead class="font-weight-bold">
-            <tr>
-                <td>Date</td> <!--Table row headers-->
-                <td>Time</td>
-            </tr>
-        </thead>
+@* input, populate table; input, populate new input, populate table; datepicker? table? week view?*@
+
+<table class="table table-bordered">
+    <thead class="font-weight-bold">
+        <tr>
+            <th>Date</th> <!--Table row headers-->
+            <th>Time</th>
+        </tr>
+    </thead>
     <tbody>
-        @foreach (TimeSlot ts in Model.Slots) 
+        @foreach (DateTime day in Model.Days)
         {
             <tr>
-                <td>@ts.Date</td>
-                <td>@ts.Time</td>
+                <td>
+                    <div class="table-heading">
+                        @day.ToShortDateString()
+                    </div>
+                    <div>
+                        (@day.DayOfWeek)
+                    </div>
+                </td>
+                <td>
+                    <table class="table table-striped">
+                        <tbody>
+                            @*
+                                Here's what is happening:
+                                Loop through each day for the next three months.
+                                For each day, loop through the list of possible times. Do not show the time slot if it is preset or past.
+                                If there are no available time slots for today, show a message.
+                            *@
+                            @{ int validTimes = 0; }
+                            @foreach (int time in Model.Times)
+                            {
+                                if (day.Date != DateTime.Now.Date || time > DateTime.Now.Hour)
+                                {
+                                    validTimes += 1;
+                                    <tr>
+                                        <td>
+                                            @*
+                                                // This isn't very readable, but it's pretty fun.
+                                                // It chooses a prefix (am or pm) and converts 24-hour time to 12-hour time.
+                                            *@
+                                            @(time < 12 ? $"{time}:00 am" : time == 12 ? $"{time}:00 pm" : $"{time - 12}:00 pm")
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @if (validTimes == 0)
+                            {
+                                <tr>
+                                    <td>No valid times for today!</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
             </tr>
         }
     </tbody>
-    </table>
-
-
+</table>
