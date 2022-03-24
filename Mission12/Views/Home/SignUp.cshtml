@@ -60,13 +60,18 @@
                             @{ int validTimes = 0; }
                             @foreach (int time in Model.Times)
                             {
+
+                                // Queries the appointments in the database and sets "currentapt" to the appointment that matches the date and time the loop is on. 
                                 var currentapt = Model.CurrentApts.Where(y => y.AptDate.Date == day.Date && y.AptTime == time).FirstOrDefault();
+                                // if the appointment is not already taken, print it out
                                 if (currentapt == null || (day.Date != currentapt.AptDate && time != currentapt.AptTime))
                                 {
+                                    // makes sure its a valid datetime
                                     if (day.Date != DateTime.Now.Date || time > DateTime.Now.Hour)
                                     {
                                         validTimes += 1;
                                         <form method="get" asp-controller="Home" asp-action="Form">
+                                            @* passes the values we want to pass to the "Form" view if the user selects this appointment *@
                                             <input type="hidden" value="@day" asp-for="Date" />
                                             <input type="hidden" value="@time" asp-for="Time" />
 
@@ -74,8 +79,7 @@
                                             <td>
                                                 <button type="submit" class="row-button">
                                                     @*
-                                // This isn't very readable, but it's pretty fun.
-                                // It chooses a prefix (am or pm) and converts 24-hour time to 12-hour time.
+                                                  // It chooses a prefix (am or pm) and converts 24-hour time to 12-hour time.
 
                                                     *@
                                                     @(time < 12 ? $"{time}:00 am" : time == 12 ? $"{time}:00 pm" : $"{time - 12}:00 pm")
