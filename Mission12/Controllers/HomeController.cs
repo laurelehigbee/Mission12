@@ -69,7 +69,7 @@ namespace Mission12.Controllers
         //public IActionResult Form(string date, string time)
         public IActionResult Form(TimeSlotsViewModel ts)
         {
-            
+            // instantiate 
             var apt = new AppointmentInfo();
             apt.AptDate = ts.Date;
             apt.AptTime = ts.Time;
