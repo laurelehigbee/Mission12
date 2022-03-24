@@ -11,8 +11,11 @@
     <label asp-for="Size">Size of Group (Max of 15):</label><input asp-for="Size" /><br />
     <label asp-for="Email">Email:</label><input asp-for="Email" /><br />
     <label asp-for="Phone">Phone Number:</label><input asp-for="Phone" /><br />
-    <label asp-for="AptDate">Appointment Date:</label><input asp-for="AptDate" readonly /><br />
-    <label asp-for="AptTime">Appointment Time:</label><input asp-for="AptTime" readonly /><br />
+    <label for="fakeDate">Appointment Date:</label><input id="fakeDate" value="@Model.AptDate.ToShortDateString()" disabled /><br />
+    <label for="fakeTime">Appointment Time:</label><input id="fakeTime" value='@(Model.AptTime < 12 ? $"{Model.AptTime}:00 am" : Model.AptTime == 12 ? $"{Model.AptTime}:00 pm" : $"{Model.AptTime - 12}:00 pm")' disabled />
+    <input type="hidden" asp-for="AptDate" />
+    <input type="hidden" asp-for="AptTime" />
+    <br />
 
     <input class="btn btn-primary" type="submit" value="Submit" />
 </form>
