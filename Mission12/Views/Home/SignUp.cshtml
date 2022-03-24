@@ -52,10 +52,10 @@
                     <table class="table table-striped">
                         <tbody>
                             @*
-                                Here's what is happening:
-                                Loop through each day for the next three months.
-                                For each day, loop through the list of possible times. Do not show the time slot if it is preset or past.
-                                If there are no available time slots for today, show a message.
+        Here's what is happening:
+        Loop through each day for the next three months.
+        For each day, loop through the list of possible times. Do not show the time slot if it is preset or past.
+        If there are no available time slots for today, show a message.
                             *@
                             @{ int validTimes = 0; }
                             @foreach (int time in Model.Times)
@@ -63,15 +63,24 @@
                                 if (day.Date != DateTime.Now.Date || time > DateTime.Now.Hour)
                                 {
                                     validTimes += 1;
-                                    <tr>
-                                        <td>
-                                            @*
-                                                // This isn't very readable, but it's pretty fun.
-                                                // It chooses a prefix (am or pm) and converts 24-hour time to 12-hour time.
-                                            *@
-                                            @(time < 12 ? $"{time}:00 am" : time == 12 ? $"{time}:00 pm" : $"{time - 12}:00 pm")
-                                        </td>
-                                    </tr>
+                                    <form method="get" asp-controller="Home" asp-action="Form">
+                                        <input type="hidden" value="@day" asp-for="Date" />
+                                        <input type="hidden" value="@time" asp-for="Time" />
+                                        
+                                            <tr>
+                                                <td>
+                                                    <button type="submit">
+                                                        @*
+        // This isn't very readable, but it's pretty fun.
+        // It chooses a prefix (am or pm) and converts 24-hour time to 12-hour time.
+                                                        *@
+                                                        @(time < 12 ? $"{time}:00 am" : time == 12 ? $"{time}:00 pm" : $"{time - 12}:00 pm")
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        
+                                    </form>
+
                                 }
                             }
                             @if (validTimes == 0)

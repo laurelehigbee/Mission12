@@ -23,6 +23,8 @@ namespace Mission12.Models
         [Required(ErrorMessage = "Please enter an email:")]
         public string Email { get; set; }
         public string Phone { get; set; }
+
+
     }
 }
 

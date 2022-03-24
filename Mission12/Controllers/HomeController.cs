@@ -63,12 +63,14 @@ namespace Mission12.Controllers
         [HttpGet]
         //once the SignUp page is finished replace current IActionResult with the following line
         //public IActionResult Form(string date, string time)
-        public IActionResult Form()
+        public IActionResult Form(TimeSlotsViewModel ts)
         {
-            //Once the IActionResult that passes in the date and time is used, uncomment the code below.
-            //ViewBag.Date = date;
-            //ViewBag.Time = time;
-            return View(new AppointmentInfo());
+            
+            var apt = new AppointmentInfo();
+            apt.AptDate = ts.Date;
+            apt.AptTime = ts.Time;
+            return View(apt);
+
         }
         [HttpPost]
         public IActionResult Form(AppointmentInfo appointmentInfo)

@@ -11,10 +11,12 @@
     <label asp-for="Size">Size of Group (Max of 15):</label><input asp-for="Size" /><br />
     <label asp-for="Email">Email:</label><input asp-for="Email" /><br />
     <label asp-for="Phone">Phone Number:</label><input asp-for="Phone" /><br />
-    <!--UNCOMMENT THE CODE BELOW ONCE THE VIEWBAG IS CREATED IN HOMECONTROLLER-->
-    <!--REPLACE THE "*" WITH THE AT SYMBOL BELOW FOR THE RAZOR CODE-->
-    <!-- <input type="hidden" asp-for="AptDate" value=*ViewBag.Date />
-    <input type="hidden" asp-for-"AptTime" value=*ViewBag.Time-->
+    <label asp-for="AptDate">Appointment Date:</label><input asp-for="AptDate" readonly /><br />
+    <label asp-for="AptTime">Appointment Time:</label><input asp-for="AptTime" readonly /><br />
+
     <input class="btn btn-primary" type="submit" value="Submit" />
 </form>
-
+<!--value='(AptTime < 12 ? $"{AptTime}:00 am" : AptTime == 12 ? $"{AptTime}:00 pm" : $"{AptTime - 12}:00 pm")'
+<td>x.AptDate.ToShortDateString()</td>--> <!--Allows for the record's data for each column to be entered-->
+<!--Not a pretty nested ternary, but the simplest inline way to determine the appropriate time suffix and convert from 24-hour to 12-hour format-->
+<!--<td>(x.AptTime < 12 ? $"{x.AptTime}:00 am" : x.AptTime == 12 ? $"{x.AptTime}:00 pm" : $"{x.AptTime - 12}:00 pm")</td>-->
