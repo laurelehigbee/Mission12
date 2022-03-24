@@ -11,3 +11,10 @@
 .text-center {
     text-align: center;
 }
+.max-width-600 {
+    max-width: 600px;
+}
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+}
