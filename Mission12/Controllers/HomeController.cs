@@ -69,7 +69,7 @@ namespace Mission12.Controllers
         //public IActionResult Form(string date, string time)
         public IActionResult Form(TimeSlotsViewModel ts)
         {
-            // instantiate 
+            // instantiate a new appointment and set its date and time attributes to the data passed in the SignUp view.
             var apt = new AppointmentInfo();
             apt.AptDate = ts.Date;
             apt.AptTime = ts.Time;
