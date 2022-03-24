@@ -13,5 +13,7 @@ namespace Mission12.Models.ViewModels
         public DateTime Date { get; set; }
         public int Time { get; set; }
 
+        public List<AppointmentInfo> CurrentApts { get; set; }
+
     }
 }

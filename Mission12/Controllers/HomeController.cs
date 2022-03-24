@@ -22,6 +22,7 @@ namespace Mission12.Controllers
         [HttpGet]
         public IActionResult SignUp()
         {
+
             var schedulableDays = new List<DateTime>();
             var schedulableTimes = new List<int>();
 
@@ -47,8 +48,9 @@ namespace Mission12.Controllers
             {
                 Days = schedulableDays,
                 Times = schedulableTimes
+
             };
-            
+            vm.CurrentApts = AptCon.Responses.ToList();
 
             return View(vm);
 
