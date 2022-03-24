@@ -6,14 +6,18 @@
 <div class="text-center">
     <h1 class="display-4">Sign Up For A Tour</h1>
 </div>
+<div asp-validation-summary="All" class="mt-4 center-contents"></div>
 <div class="form-wrapper">
     <form class="form-control row gy-2 gx-3 align-items-center col-md-8 max-width-600 my-4" method="post">
         <label asp-for="GroupName" autofocus>Name of Group:</label><input asp-for="GroupName" /><br />
         <label asp-for="Size">Size of Group (Max of 15):</label><input asp-for="Size" /><br />
         <label asp-for="Email">Email:</label><input asp-for="Email" /><br />
         <label asp-for="Phone">Phone Number:</label><input asp-for="Phone" /><br />
+        @*These "Fake" inputs are to display the selected day and time in a nice format. The hidden inputs contain the real data and are actually submitted.*@
         <label for="fakeDate">Appointment Date:</label><input id="fakeDate" value="@Model.AptDate.ToShortDateString()" disabled /><br />
+        @*The formatting double ternary is kinda crazy, but it might just be great.*@
         <label for="fakeTime">Appointment Time:</label><input id="fakeTime" value='@(Model.AptTime < 12 ? $"{Model.AptTime}:00 am" : Model.AptTime == 12 ? $"{Model.AptTime}:00 pm" : $"{Model.AptTime - 12}:00 pm")' disabled />
+        @*Send the actual date and time.*@
         <input type="hidden" asp-for="AptDate" />
         <input type="hidden" asp-for="AptTime" />
         <br />
@@ -21,7 +25,4 @@
         <input class="btn btn-primary my-4" type="submit" value="Submit" />
     </form>
 </div>
-<!--value='(AptTime < 12 ? $"{AptTime}:00 am" : AptTime == 12 ? $"{AptTime}:00 pm" : $"{AptTime - 12}:00 pm")'
-<td>x.AptDate.ToShortDateString()</td>--> <!--Allows for the record's data for each column to be entered-->
-<!--Not a pretty nested ternary, but the simplest inline way to determine the appropriate time suffix and convert from 24-hour to 12-hour format-->
-<!--<td>(x.AptTime < 12 ? $"{x.AptTime}:00 am" : x.AptTime == 12 ? $"{x.AptTime}:00 pm" : $"{x.AptTime - 12}:00 pm")</td>-->
+
