@@ -50,6 +50,8 @@ namespace Mission12.Controllers
                 Times = schedulableTimes
 
             };
+
+            // set the "CurrentApts" attribute of the TimeSlotsViewModel to the retrieved list of all the appointments that have been made (as seen in the context file referenced below)
             vm.CurrentApts = AptCon.Responses.ToList();
 
             return View(vm);
